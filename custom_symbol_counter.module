@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ * 
+ * Defines custom menu items for the Drupal module. 
+ * In this case, the function returns an empty array as no menu items are defined.
+ */
+function custom_symbol_counter_menu() {
+  $items = array();
+  return $items; // Return the menu items array (currently empty).
+}
+
+/**
+ * Implements hook_init().
+ * 
+ * Adds the JavaScript file `custom_symbol_counter.js` to all pages where the module is active.
+ * This ensures the JS functionality is loaded into the site.
+ */
+function custom_symbol_counter_init() {
+  // Add the custom JavaScript file from the module's directory.
+  drupal_add_js(drupal_get_path('module', 'custom_symbol_counter') . '/custom_symbol_counter.js');
+}
+
+/**
+ * Implements hook_ckeditor_plugin().
+ * 
+ * Registers a custom CKEditor plugin with Drupal, linking it to the plugin's JavaScript file.
+ */
+function custom_symbol_counter_ckeditor_plugin() {
+  return array(
+    'symbolcounter' => array(
+      'path' => drupal_get_path('module', 'custom_symbol_counter') . '/plugins/symbolcounter/', // Path to the plugin directory.
+      'filename' => 'plugin.js', // The plugin's main JavaScript file.
+    ),
+  );
+}
+
+/**
+ * Implements hook_ckeditor_plugins().
+ * 
+ * Adds custom CKEditor plugins to the Drupal system. 
+ * This hook is specifically for CKEditor integration with Drupal.
+ */
+function custom_symbol_counter_ckeditor_plugins() {
+  return array(
+    'symbolcounter' => array(
+      'path' => drupal_get_path('module', 'custom_symbol_counter') . '/plugins/symbolcounter/', // Path to the plugin directory.
+      'file' => 'plugin.js', // The plugin's main JavaScript file.
+    ),
+  );
+}

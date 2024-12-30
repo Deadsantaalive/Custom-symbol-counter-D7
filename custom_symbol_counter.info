@@ -1,0 +1,4 @@
+name = Custom symbol counter
+description = Adds a character count to textareas.
+core = 7.x
+package = Custom
